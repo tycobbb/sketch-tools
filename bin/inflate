@@ -1,0 +1,9 @@
+#!/bin/sh
+BIN=$(dirname "$(realpath "$0")")
+source $BIN/stdlib
+
+# main
+cp $proj_sketch $proj_zip
+mkdir -p $proj_source
+unzip $proj_sketch -d $proj_source
+rm $proj_zip

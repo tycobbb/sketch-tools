@@ -1,0 +1,46 @@
+#!/bin/sh
+if [ -z "$BIN" ]; then
+  echo "script must set \$BIN";
+  exit -1
+fi
+
+# context/project
+proj_dir=$(cd $BIN/.. && pwd)
+proj_git=$proj_dir/.git
+proj_bin=$BIN
+proj_cfg=$proj_dir/config
+
+# context/project - validations
+if [ ! -f "$proj_cfg" ]; then
+  echo "config does not exist: $proj_cfg"
+  exit 1
+fi
+
+# context/sketch
+proj_name=$(cat $proj_cfg)
+proj_source=$proj_dir/$proj_name
+proj_sketch=$proj_source.sketch
+proj_zip=$proj_sketch.zip
+
+# context/sketch - validations
+if [ ! -f "$proj_sketch" ]; then
+  echo "sketch file does not exist: $proj_sketch"
+  exit 2
+fi
+
+# functions
+function bin() {
+  name=$1
+  if [ -z "$name" ]; then
+    echo "bin: must pass a script"
+    exit -1
+  fi
+
+  script=$BIN/$name
+  if [ -z "$script" ]; then
+    echo "bin: script does not exist: $script"
+    exit -1
+  fi
+
+  $script "${@:2}"
+}

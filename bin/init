@@ -1,0 +1,7 @@
+#!/bin/sh
+BIN=$(dirname "$(realpath "$0")")
+source $BIN/stdlib
+
+# main
+git init
+bin commit "Hello Sketch."

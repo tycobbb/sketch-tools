@@ -1,0 +1,13 @@
+#!/bin/sh
+BIN=$(dirname "$(realpath "$0")")
+source $BIN/stdlib
+
+# main
+message=$1
+if [ -z "$message" ]; then
+  echo "`commit`: must pass message"
+fi
+
+bin inflate
+git add .
+git commit -m "$message"

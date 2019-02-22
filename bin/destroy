@@ -1,0 +1,7 @@
+#!/bin/sh
+BIN=$(dirname "$(realpath "$0")")
+source $BIN/stdlib
+
+# main
+rm -rf $proj_source
+rm -rf $proj_git

@@ -1,0 +1,11 @@
+#!/bin/sh
+BIN=$(dirname "$(realpath "$0")")
+source $BIN/stdlib
+
+# main
+if [ ! -d "$proj_source" ]; then
+  echo "`deflate`: source files do not exist: $proj_source"
+  exit 3
+fi
+
+zip -r $proj_sketch $proj_source
